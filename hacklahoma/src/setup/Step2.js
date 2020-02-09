@@ -8,8 +8,8 @@ function Step2(props) {
     }
     return(
       <div className="form-group">
-        <label htmlFor="timeOfDay">Would you describe yourself as a...</label>
-        <div className="inline-block purple-outline">
+        <label htmlFor="timeOfDay" className = 'toplabel'>Would you describe yourself as a...</label>
+        <div className="inline-block purple-outline" style={{marginRight: 15}}>
           <label className="radioLabel" htmlFor="n-option">
             Night Owl
             <img src={NightImage}/>
@@ -29,7 +29,7 @@ function Step2(props) {
 
         <div class="inline-block purple-outline">
         <label className="radioLabel" htmlFor="t-option">
-          Lark
+          Morning Lark
           <img src={DayImage}/>
         </label>
         <input

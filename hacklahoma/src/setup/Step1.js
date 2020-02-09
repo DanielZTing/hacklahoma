@@ -6,7 +6,7 @@ function Step1(props) {
     }
     return(
       <div className="form-group">
-        <label htmlFor="email">What's your name?</label>
+        <label htmlFor="email" className = 'toplabel'>What's your name?</label>
         <input
           className="form-control"
           id="name"

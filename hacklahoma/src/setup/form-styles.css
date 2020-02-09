@@ -16,7 +16,7 @@ input:focus, textarea:focus, select:focus{
   outline: none;
 }
 .wrapper {
-  width: 60%;
+  width: 62%;
   margin: auto;
 }
 .float-right {
@@ -43,6 +43,7 @@ input:focus, textarea:focus, select:focus{
 
 .btn-secondary {
   background-color: #797979;
+  margin:20px;
 }
 
 .btn-small {
@@ -58,6 +59,7 @@ input:focus, textarea:focus, select:focus{
 }
 
 .form-group {
+  margin-top:3em;
   font-size: 2rem;
 }
 
@@ -76,12 +78,16 @@ input:focus, textarea:focus, select:focus{
   height: 50vh;
   border: 5px solid #536DFE;
   border-radius: 10%;
-  margin-right: 1em;
+  padding:10px;
   vertical-align: top;
 }
 
 .radioLabel img {
   width: 100%;
+}
+
+.toplabel {
+  margin-bottom:17px;
 }
 
 input[type=radio] {
