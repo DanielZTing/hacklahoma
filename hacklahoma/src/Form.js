@@ -258,7 +258,8 @@ nextButton(){
     return (
       <button
         className="btn btn-success float-right"
-        type="button">
+        type="button"
+        onClick={this.handleSubmit}>
           Generate Schedule
       </button>
     )
