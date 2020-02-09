@@ -184,7 +184,7 @@ previousButton() {
   if(currentStep !==1){
     return (
       <button
-        className="btn btn-secondary"
+        className="btn btn-special"
         type="button" onClick={this._prev}>
       Previous
       </button>
@@ -198,7 +198,7 @@ nextButton(){
   if(currentStep < numQuestions){
     return (
       <button
-        className="btn btn-primary float-right"
+        className="btn btn-primary"
         type="button" onClick={this._next}>
       Next
       </button>
