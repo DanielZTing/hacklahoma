@@ -9,7 +9,7 @@ function Step2(props) {
     return(
       <div className="form-group">
         <label htmlFor="timeOfDay">Would you describe yourself as a...</label>
-        <div class="inline-block">
+        <div className="inline-block purple-outline">
           <label className="radioLabel" htmlFor="n-option">
             Night Owl
             <img src={NightImage}/>
@@ -27,7 +27,7 @@ function Step2(props) {
 
         </div>
 
-        <div class="inline-block">
+        <div class="inline-block purple-outline">
         <label className="radioLabel" htmlFor="t-option">
           Lark
           <img src={DayImage}/>

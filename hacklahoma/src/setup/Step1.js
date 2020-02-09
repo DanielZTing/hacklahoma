@@ -10,10 +10,10 @@ function Step1(props) {
         <input
           className="form-control"
           id="name"
-          name="name"
+          name="userName"
           type="text"
           placeholder="Enter your name"
-          value={props.name}
+          value={props.userName}
           onChange={props.handleChange}
           />
       </div>

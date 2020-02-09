@@ -1,5 +1,7 @@
+/* General styles */
+
 body {
-  font-size: 30px;
+  font-size: 14px;
 }
 
 label {
@@ -9,6 +11,15 @@ label {
 input:focus, textarea:focus, select:focus{
   outline: none;
 }
+.wrapper {
+  width: 60%;
+  margin: auto;
+}
+.float-right {
+  float: right;
+}
+
+/* Button styles */
 
 .btn {
   padding: 0.5em 1em;
@@ -16,27 +27,42 @@ input:focus, textarea:focus, select:focus{
   border: none;
   color: white;
   border-radius: 10px;
+  cursor: pointer;
 }
-
+.btn-success {
+  background-color: #FC0590;
+}
 .btn-primary {
   background-color: #F9A826;
 }
 
 .btn-secondary {
-  background-color: lightgray;
+  background-color: #797979;
 }
 
+/* Form text styles */
+
 .form-control {
-  font-size: 1em;
+  font-size: 2rem;
   border: none;
   border-bottom: 1px solid black;
+}
+
+.form-group {
+  font-size: 2rem;
 }
 
 .form-control:active {
   border: none;
 }
+
+/* Radio button styles */
+
 .inline-block {
   display: inline-block;
+}
+
+.purple-outline {
   width: 40%;
   height: 50vh;
   border: 5px solid #536DFE;
