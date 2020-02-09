@@ -4,9 +4,10 @@ import Step2 from './setup/Step2.js'
 import Step3 from './setup/Step3.js'
 import Step4 from './setup/Step4.js'
 import Step5 from './setup/Step5.js'
+import Step6 from './setup/Step6.js'
 import './setup/form-styles.css';
 
-const numQuestions = 5;
+const numQuestions = 6;
 
 class Form extends React.Component {
   constructor(props) {
@@ -17,7 +18,14 @@ class Form extends React.Component {
       timeOfDay: '',
       sleepTime: null,
       wakeTime: null,
-      busyTimes: [{startTime: null, endTime: null}]
+      breakfastStartTime: null,
+      breakfastEndTime: null,
+      lunchStartTime: null,
+      lunchEndTime: null,
+      dinnerStartTime: null,
+      dinnerEndTime: null,
+      busyTimes: [{startTime: null, endTime: null}],
+      tasks: [{name: "", category: "", timeInMinutes: 0, flagged: false}]
     }
   }
 
@@ -49,6 +57,62 @@ class Form extends React.Component {
     })
   }
 
+  // Handle input from step 6 (this code is kinda bad because we need one method to handle each input field)
+  // We should be able to make a more general approach based on the name of each key
+
+  handleTimeInMinutes = i => e => {
+    let tasks = [...this.state.tasks]
+    tasks[i].timeInMinutes = e.target.value
+    this.setState({
+      tasks
+    })
+  }
+
+  handleTaskName = i => e => {
+    let tasks = [...this.state.tasks]
+    tasks[i].name = e.target.value
+    this.setState({
+      tasks
+    })
+  }
+
+  handleTaskCategory = i => e => {
+    let tasks = [...this.state.tasks]
+    tasks[i].category = e.target.value
+    this.setState({
+      tasks
+    })
+  }
+
+  handleFlag = i => e => {
+    let tasks = [...this.state.tasks]
+    tasks[i].flagged = e.target.checked
+    this.setState({
+      tasks
+    })
+  }
+
+  addTask = e => {
+    e.preventDefault()
+    let tasks = this.state.tasks.concat([{name: "", category: "", timeInMinutes: 0, flagged: false}])
+    this.setState({
+      tasks
+    })
+  }
+
+  handleDeleteTasks = i => e => {
+    e.preventDefault()
+    let tasks = [
+      ...this.state.tasks.slice(0, i),
+      ...this.state.tasks.slice(i + 1)
+    ]
+    this.setState({
+      tasks
+    })
+  }
+
+
+
   addQuestion = e => {
     e.preventDefault()
     let busyTimes = this.state.busyTimes.concat([{startTime: null, endTime: null}])
@@ -65,16 +129,35 @@ class Form extends React.Component {
     })
   }
 
+
+
+
+
+
+
+
   handleSubmit = event => {
     event.preventDefault()
-    const { userName, timeOfDay, sleepTime, wakeTime, busyTimes } = this.state
-    alert(`Your registration detail: \n
-           Name: ${userName} \n
-           Time of Day: ${timeOfDay} \n
-           sleepTime: ${sleepTime} \n
-           wakeTime: ${wakeTime} \n
-           startTime: ${busyTimes[0].startTime} \n
-           endTime: ${busyTimes[0].endTime}`)
+    var jsonString = JSON.stringify({}); //TODO: add correct format of JSON
+
+    fetch('https://mywebsite.com/endpoint/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: jsonString
+    })
+
+
+    // const { userName, timeOfDay, sleepTime, wakeTime, breakfastStartTime, tasks } = this.state
+    // alert(`Your registration detail: \n
+    //        Name: ${userName} \n
+    //        Time of Day: ${timeOfDay} \n
+    //        sleepTime: ${sleepTime} \n
+    //        wakeTime: ${wakeTime} \n
+    //        startTime: ${breakfastStartTime} \n
+    //        endTime: ${tasks[0].flagged}`)
   }
 
   _next = () => {
@@ -129,7 +212,7 @@ nextButton(){
       <React.Fragment>
       <div className="wrapper">
         <p>Answer a few short questions so we can personalize your schedule.</p>
-        <p className="float-right">Question {this.state.currentStep}/5</p>
+    <p className="float-right">Question {this.state.currentStep}/{numQuestions}</p>
 
         <form onSubmit={this.handleSubmit}>
         {/*
@@ -149,8 +232,14 @@ nextButton(){
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
             password={this.state.password}
+            breakfastTimes={this.state.breakfastTimes}
           />
           <Step4
+            currentStep={this.state.currentStep}
+            handleChange={this.handleChange}
+            password={this.state.password}
+          />
+          <Step5
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
             busyTimes={this.state.busyTimes}
@@ -159,10 +248,16 @@ nextButton(){
             handleDelete={this.handleDelete}
             addQuestion={this.addQuestion}
           />
-          <Step5
+          <Step6
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
-            password={this.state.password}
+            tasks={this.state.tasks}
+            handleDeleteTasks={this.handleDeleteTasks}
+            handleTimeInMinutes={this.handleTimeInMinutes}
+            handleTaskName={this.handleTaskName}
+            handleTaskCategory={this.handleTaskCategory}
+            handleFlag={this.handleFlag}
+            addTask={this.addTask}
           />
           {this.previousButton()}
           {this.nextButton()}
