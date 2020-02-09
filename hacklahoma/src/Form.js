@@ -24,7 +24,7 @@ class Form extends React.Component {
       lunchEndTime: null,
       dinnerStartTime: null,
       dinnerEndTime: null,
-      busyTimes: [{startTime: null, endTime: null}],
+      busyTimes: [{startTime: null, endTime: null, name: ""}],
       tasks: [{name: "", category: "", timeInMinutes: 0, flagged: false}]
     }
   }
@@ -40,7 +40,7 @@ class Form extends React.Component {
     })
   }
 
-  // To handle the input from multi-field form pages
+  // To handle the input from multi-field form pages (step 5 specifically)
   handleStartTime = i => e => {
     let busyTimes = [...this.state.busyTimes]
     busyTimes[i].startTime = e.target.value
@@ -52,6 +52,14 @@ class Form extends React.Component {
   handleEndTime = i => e => {
     let busyTimes = [...this.state.busyTimes]
     busyTimes[i].endTime = e.target.value
+    this.setState({
+      busyTimes
+    })
+  }
+
+  handleBusyName = i => e => {
+    let busyTimes = [...this.state.busyTimes]
+    busyTimes[i].name = e.target.value
     this.setState({
       busyTimes
     })
@@ -129,26 +137,65 @@ class Form extends React.Component {
     })
   }
 
-
-
-
-
-
-
-
   handleSubmit = event => {
     event.preventDefault()
-    var jsonString = JSON.stringify({}); //TODO: add correct format of JSON
 
-    fetch('https://mywebsite.com/endpoint/', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+    let busyTimes = this.state.busyTimes;
+    let tasks = this.state.tasks;
+    
+    // Process arrays
+    for(var i = 0; i < busyTimes.length; i++) {
+      if(!busyTimes[i].startTime === null) continue;
+
+      busyTimes[i].start = this.convertToMinutesSinceMidnight(busyTimes[i].startTime);
+      busyTimes[i].end = this.convertToMinutesSinceMidnight(busyTimes[i].endTime);
+
+      // This code could cause future errors with certain engines
+      delete busyTimes[i].startTime;
+      delete busyTimes[i].endTime;
+    }
+
+    for(var i = 0; i < tasks.length; i++) {
+      if(!tasks[i].startTime) continue;
+      tasks[i].start = this.convertToMinutesSinceMidnight(tasks[i].startTime);
+      tasks[i].end = this.convertToMinutesSinceMidnight(tasks[i].endTime);
+
+      // This code could cause future errors with certain engines
+      delete tasks[i].startTime;
+      delete tasks[i].endTime;
+    }
+    
+    var jsonString = JSON.stringify({
+      timePreference: this.timeOfDay,
+      Sleep: {
+        start: this.convertToMinutesSinceMidnight(this.state.sleepTime), // TODO: convert to minutes
+        end: this.convertToMinutesSinceMidnight(this.state.wakeTime)
       },
-      body: jsonString
-    })
+      Breakfast: {
+        start: this.convertToMinutesSinceMidnight(this.state.breakfastStartTime),
+        end: this.convertToMinutesSinceMidnight(this.state.breakfastEndTime)
+      },
+      Lunch: {
+        start: this.convertToMinutesSinceMidnight(this.state.lunchStartTime),
+        end: this.convertToMinutesSinceMidnight(this.state.lunchEndTime)
+      },
+      Dinner: {
+        start: this.convertToMinutesSinceMidnight(this.state.dinnerStartTime),
+        end: this.convertToMinutesSinceMidnight(this.state.dinnerEndTime)
+      },
+      blockedOff: this.state.busyTimes, // TODO: change startTIme to start and endTime to end, also do this in this.tasks
+      Tasks: this.state.tasks
+    }); 
+  //  fetch('https://mywebsite.com/endpoint/', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: jsonString
+  //   })
 
+    alert(jsonString)
 
     // const { userName, timeOfDay, sleepTime, wakeTime, breakfastStartTime, tasks } = this.state
     // alert(`Your registration detail: \n
@@ -174,6 +221,10 @@ class Form extends React.Component {
     this.setState({
       currentStep: currentStep
     })
+  }
+
+  convertToMinutesSinceMidnight(time) {
+    return time? (parseInt(time.substring(0, time.indexOf(":"))) * 60 + parseInt(time.substring(time.indexOf(":") + 1))) : 0;
   }
 
 /*
@@ -222,11 +273,12 @@ nextButton(){
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
             email={this.state.email}
+            userName={this.state.userName}
           />
           <Step2
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
-            username={this.state.username}
+            userName={this.state.userName}
           />
           <Step3
             currentStep={this.state.currentStep}
@@ -247,6 +299,7 @@ nextButton(){
             handleEndTime={this.handleEndTime}
             handleDelete={this.handleDelete}
             addQuestion={this.addQuestion}
+            handleBusyName={this.handleBusyName}
           />
           <Step6
             currentStep={this.state.currentStep}
