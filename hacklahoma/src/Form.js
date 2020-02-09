@@ -8,8 +8,8 @@ class Form extends React.Component {
     super(props)
     this.state = {
       currentStep: 1,
-      email:  '',
-      username: '',
+      name:  '',
+      timeOfDay: '',
       password: '',
     }
   }
@@ -23,10 +23,10 @@ class Form extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    const { email, username, password } = this.state
+    const { email, timeOfDay, password } = this.state
     alert(`Your registration detail: \n
            Email: ${email} \n
-           Username: ${username} \n
+           Time of Day: ${timeOfDay} \n
            Password: ${password}`)
   }
 
