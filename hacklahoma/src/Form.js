@@ -254,6 +254,14 @@ nextButton(){
       Next
       </button>
     )
+  } else {
+    return (
+      <button
+        className="btn btn-success float-right"
+        type="button">
+          Generate Schedule
+      </button>
+    )
   }
   return null;
 }

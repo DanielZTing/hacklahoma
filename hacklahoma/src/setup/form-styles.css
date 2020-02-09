@@ -35,6 +35,7 @@ input:focus, textarea:focus, select:focus{
 }
 .btn-success {
   background-color: #FC0590;
+  margin: 20px;
 }
 .btn-primary {
   background-color: #F9A826;
