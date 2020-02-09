@@ -3,7 +3,13 @@
 }
 
 .dark-mode {
-    background-color: darkslategrey;
+    background-color: #222222;
+    color: white;
+}
+.dark-mode input {
+    background: none !important;
+    color: white !important;
+    border-bottom-color: white !important;
 }
 
 
@@ -24,10 +30,10 @@
   .slider {
     position: absolute;
     cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 82vh;
+    left: 20px;
+    right: -20px;
+    bottom: -82vh;
     background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;

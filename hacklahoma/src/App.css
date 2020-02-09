@@ -13,6 +13,32 @@
   }
 }
 
+.mainHeader {
+  height: 10vh;
+  width: 63%;
+  margin: auto;
+}
+.mainHeader .inline-block {
+  position: relative;
+  top: -20px;
+  left: 10px;
+}
+
+.mainHeader h1 {
+  font-weight: bold;
+  font-size: 2em;
+  margin: 0;
+  vertical-align: top;
+}
+
+.mainHeader b {
+  vertical-align: top;
+}
+
+.mainHeader img {
+  height: 100%;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

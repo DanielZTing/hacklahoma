@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './android-chrome-512x512.png';
 import './App.css';
 // import './setup/cloud-styles.css'
 import Form from './Form.js';
@@ -22,6 +22,7 @@ class Container extends React.Component {
   render() {
     return (
       <div className={this.state.cn}>
+          <Header></Header>
           <DarkModeToggle toggleDarkMode={this.toggleDarkMode}></DarkModeToggle>
           <Form></Form>
       </div>
@@ -34,8 +35,14 @@ class Container extends React.Component {
     } else {
       this.setState({cn: "light-mode"});
     }
-    console.log(this.state.cn);
   }
 }
 
+class Header extends React.Component {
+  render() {
+    return (
+      <div className="mainHeader"><img src={logo}/><div className="inline-block"><h1>Quetzal</h1><b>Automatic scheduling, done right.</b></div></div>
+    );
+  }
+}
 export default App;

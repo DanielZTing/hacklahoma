@@ -9,7 +9,7 @@ function Step6(props) {
       <div className="form-group">
         <label htmlFor="password">What tasks would you like to accomplish?</label>
         {props.tasks.map((entry, index) => 
-        <span key={index}>
+        <span className="event-entry" key={index}>
             <p className="inline">I want to </p>
             <input
               type="text"
@@ -44,8 +44,8 @@ function Step6(props) {
             <input type="checkbox" onChange={props.handleFlag(index)} name="flagged"/>
             <label className="inline" htmlFor="flagged"> Important</label>
 
-            <button onClick={props.handleDeleteTasks(index)}>X</button>
-
+            <button className="btn btn-small btn-secondary" onClick={props.handleDeleteTasks(index)}>X</button>
+            <br></br>
           </span>)}
 
           <br></br>
