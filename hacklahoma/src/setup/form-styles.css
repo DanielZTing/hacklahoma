@@ -35,15 +35,27 @@ input:focus, textarea:focus, select:focus{
 }
 .btn-success {
   background-color: #FC0590;
+  margin: 20px;
 }
 .btn-primary {
   background-color: #F9A826;
-  margin: 20px;
+  margin: 50px;
+  position:fixed;
+  right:0;
+  bottom:0;
 }
 
 .btn-secondary {
   background-color: #797979;
   margin:20px;
+}
+
+.btn-special {
+  background-color: #797979;
+  margin:50px;
+  position:fixed;
+  left: 0;
+  bottom:0;
 }
 
 .btn-small {

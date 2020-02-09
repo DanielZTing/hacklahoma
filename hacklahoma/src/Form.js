@@ -185,17 +185,17 @@ class Form extends React.Component {
       },
       blockedOff: this.state.busyTimes, // TODO: change startTIme to start and endTime to end, also do this in this.tasks
       Tasks: this.state.tasks
-    }); 
-  //  fetch('https://mywebsite.com/endpoint/', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: jsonString
-  //   })
-
+    });
+  fetch('http://127.0.0.1:5000/query/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: jsonString
+    })
     alert(jsonString)
+
 
     // const { userName, timeOfDay, sleepTime, wakeTime, breakfastStartTime, tasks } = this.state
     // alert(`Your registration detail: \n
@@ -235,7 +235,7 @@ previousButton() {
   if(currentStep !==1){
     return (
       <button
-        className="btn btn-secondary"
+        className="btn btn-special"
         type="button" onClick={this._prev}>
       Previous
       </button>
@@ -249,9 +249,18 @@ nextButton(){
   if(currentStep < numQuestions){
     return (
       <button
-        className="btn btn-primary float-right"
+        className="btn btn-primary"
         type="button" onClick={this._next}>
       Next
+      </button>
+    )
+  } else {
+    return (
+      <button
+        className="btn btn-success float-right"
+        type="button"
+        onClick={this.handleSubmit}>
+          Generate Schedule
       </button>
     )
   }

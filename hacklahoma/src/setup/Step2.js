@@ -10,7 +10,7 @@ function Step2(props) {
       <div className="form-group">
         <label htmlFor="timeOfDay" className = 'toplabel'>Hello, {props.userName}. Would you describe yourself as a...</label>
         
-        <div class="inline-block purple-outline" style={{marginRight: 15}}>
+        <div className="inline-block purple-outline" style={{marginRight: 15}}>
         <label className="radioLabel" htmlFor="t-option">
           Morning Lark
           <img src={DayImage}/>
