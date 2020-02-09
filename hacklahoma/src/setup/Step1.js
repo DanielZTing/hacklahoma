@@ -12,7 +12,7 @@ function Step1(props) {
           id="name"
           name="userName"
           type="text"
-          placeholder="Enter your name"
+          placeholder="Your name here"
           value={props.userName}
           onChange={props.handleChange}
           />

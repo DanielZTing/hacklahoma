@@ -38,6 +38,7 @@ input:focus, textarea:focus, select:focus{
 }
 .btn-primary {
   background-color: #F9A826;
+  margin: 20px;
 }
 
 .btn-secondary {
@@ -45,13 +46,13 @@ input:focus, textarea:focus, select:focus{
 }
 
 .btn-small {
-  font-size: 0.5em;
+  font-size: .5em;
 }
 
 /* Form text styles */
 
 .form-control {
-  font-size: 2rem;
+  font-size: 2em;
   border: none;
   border-bottom: 1px solid black;
 }
