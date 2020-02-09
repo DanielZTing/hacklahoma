@@ -271,7 +271,7 @@ nextButton(){
     return (
       <React.Fragment>
       <div className="wrapper">
-        <span>Answer a few short questions so we can personalize your schedule.</span>
+        <span>First, answer a few short questions so we can personalize your schedule.</span>
     <p className="float-right" style={{margin: 0}}>Question {this.state.currentStep}/{numQuestions}</p>
 
         <form onSubmit={this.handleSubmit}>

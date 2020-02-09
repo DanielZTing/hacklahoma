@@ -49,7 +49,7 @@ function Step6(props) {
           </span>)}
 
           <br></br>
-        <button onClick={props.addTask} className="btn btn-secondary">Add another time</button>
+        <button onClick={props.addTask} className="btn btn-small btn-secondary">Add another time</button>
       </div>
       </React.Fragment>
     );
